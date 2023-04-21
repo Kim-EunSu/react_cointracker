@@ -31,7 +31,8 @@ const Coin = styled.li`
   margin: 1rem;
   border-radius: 15px;
   a {
-    display: block;
+    display: flex;
+    align-items: center;
     transition: color 0.3s ease-in;
   }
   &:hover {
@@ -39,6 +40,12 @@ const Coin = styled.li`
       color: ${(props) => props.theme.accentColor};
     }
   }
+`;
+
+const Image = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 `;
 
 const override: CSSProperties = {
@@ -66,7 +73,7 @@ function Coins() {
     axios
       .get("https://api.coinpaprika.com/v1/coins")
       .then((res) => setCoins(res.data));
-    setLoading(true);
+    setLoading(false);
   }, []);
 
   return (
@@ -87,7 +94,13 @@ function Coins() {
           <CoinList>
             {coins.slice(0, 100).map((item) => (
               <Coin key={item.id}>
-                <Link to={`/${item.name}`}>{item.name} &rarr;</Link>
+                <Link to={`/${item.name}`}>
+                  <Image
+                    src={`https://static.coinpaprika.com/coin/${item.id}/logo.png`}
+                    alt="coin"
+                  ></Image>
+                  {item.name} &rarr;
+                </Link>
               </Coin>
             ))}
           </CoinList>
