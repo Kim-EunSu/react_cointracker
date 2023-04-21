@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { useState, CSSProperties, useEffect } from "react";
 import PropagateLoader from "react-spinners/PropagateLoader";
 
+const override: CSSProperties = {
+  position: "fixed",
+  top: "40%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+};
+
 const Title = styled.h1`
   font-size: 3rem;
   text-align: center;
@@ -10,12 +17,43 @@ const Title = styled.h1`
   color: ${(props) => props.theme.textColor};
 `;
 
-const override: CSSProperties = {
-  position: "fixed",
-  top: "40%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-};
+const InfoWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 40px;
+`;
+
+const BoxWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 1.2rem;
+  border-radius: 30px;
+`;
+
+const BoxWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+`;
+
+const BoxTitle = styled.h3`
+  font-weight: 700;
+`;
+
+const BoxDesc = styled.h4``;
+
+const Desc = styled.p`
+  padding: 30px;
+  text-align: center;
+  line-height: 1.3;
+  color: #999999;
+`;
 
 interface RouteState {
   state: {
@@ -97,15 +135,16 @@ function Coin() {
         await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}
       `);
       const infojson = await infoData.json();
+      console.log(infojson);
 
       const priceData =
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}
       `);
       const pricejson = await priceData.json();
 
-      setLoading(false);
       setInfo(infojson);
       setPrice(pricejson);
+      setLoading(false);
     })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -123,10 +162,40 @@ function Coin() {
           data-testid="loader"
         />
       ) : (
-        <span>{info?.rank}</span>
+        <>
+          <InfoWrapper>
+            <BoxWrapper>
+              <BoxWrap>
+                <BoxTitle>Rank</BoxTitle>
+                <BoxDesc>{info?.rank}</BoxDesc>
+              </BoxWrap>
+              <BoxWrap>
+                <BoxTitle>Symbol</BoxTitle>
+                <BoxDesc>${info?.symbol}</BoxDesc>
+              </BoxWrap>
+            </BoxWrapper>
+
+            <Desc>{info?.description}</Desc>
+
+            <BoxWrapper>
+              <BoxWrap>
+                <BoxTitle>Toal_Suply</BoxTitle>
+                <BoxDesc>{price?.total_supply.toFixed(0)}</BoxDesc>
+              </BoxWrap>
+              <BoxWrap>
+                <BoxTitle>Max_Suply</BoxTitle>
+                <BoxDesc>{price?.max_supply}</BoxDesc>
+              </BoxWrap>
+            </BoxWrapper>
+          </InfoWrapper>
+        </>
       )}
     </>
   );
 }
 
 export default Coin;
+
+// text-align: center;
+//     line-height: 1.3;
+//     padding: 30px;
