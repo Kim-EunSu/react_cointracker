@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const Header = styled.div``;
@@ -38,6 +41,13 @@ const Coin = styled.li`
   }
 `;
 
+const override: CSSProperties = {
+  position: "fixed",
+  top: "40%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+};
+
 interface CoinInterface {
   id: string;
   name: string;
@@ -50,11 +60,13 @@ interface CoinInterface {
 
 function Coins() {
   const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get("https://api.coinpaprika.com/v1/coins")
       .then((res) => setCoins(res.data));
+    setLoading(true);
   }, []);
 
   return (
@@ -63,13 +75,23 @@ function Coins() {
         <Header>
           <Title>Coin Tracker</Title>
         </Header>
-        <CoinList>
-          {coins.slice(0, 100).map((item) => (
-            <Coin key={item.id}>
-              <Link to={`/${item.name}`}>{item.name} &rarr;</Link>
-            </Coin>
-          ))}
-        </CoinList>
+        {loading ? (
+          <PropagateLoader
+            color="#a1a198"
+            size={10}
+            cssOverride={override}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <CoinList>
+            {coins.slice(0, 100).map((item) => (
+              <Coin key={item.id}>
+                <Link to={`/${item.name}`}>{item.name} &rarr;</Link>
+              </Coin>
+            ))}
+          </CoinList>
+        )}
       </Container>
     </>
   );
