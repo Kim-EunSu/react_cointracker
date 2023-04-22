@@ -1,4 +1,10 @@
-import { useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useMatch,
+  useParams,
+} from "react-router-dom";
 import styled from "styled-components";
 import { useState, CSSProperties, useEffect } from "react";
 import PropagateLoader from "react-spinners/PropagateLoader";
@@ -53,6 +59,21 @@ const Desc = styled.p`
   text-align: center;
   line-height: 1.3;
   color: #999999;
+`;
+
+const TapWrapper = styled.div`
+  display: flex;
+  padding: 1.5rem 0;
+  justify-content: space-around;
+`;
+
+const Tab = styled.div<{ isActive: boolean }>`
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  background-color: white;
+  font-weight: ${(props) => (props.isActive ? "700" : "")};
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.textColor};
 `;
 
 interface RouteState {
@@ -129,13 +150,15 @@ function Coin() {
   const [info, setInfo] = useState<InfoData>();
   const [price, setPrice] = useState<PriceData>();
 
+  const ChartMatch = useMatch("/:coinId/chart");
+  const PriceMatch = useMatch("/:coinId/price");
+
   useEffect(() => {
     (async () => {
       const infoData =
         await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}
       `);
       const infojson = await infoData.json();
-      console.log(infojson);
 
       const priceData =
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}
@@ -187,6 +210,17 @@ function Coin() {
                 <BoxDesc>{price?.max_supply}</BoxDesc>
               </BoxWrap>
             </BoxWrapper>
+
+            <TapWrapper>
+              <Tab isActive={ChartMatch !== null}>
+                <Link to={`/${coinId}/chart`}>Chart</Link>
+              </Tab>
+              <Tab isActive={PriceMatch !== null}>
+                <Link to={`/${coinId}/price`}>Price</Link>
+              </Tab>
+            </TapWrapper>
+
+            <Outlet />
           </InfoWrapper>
         </>
       )}
@@ -195,7 +229,3 @@ function Coin() {
 }
 
 export default Coin;
-
-// text-align: center;
-//     line-height: 1.3;
-//     padding: 30px;
