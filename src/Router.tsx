@@ -13,7 +13,7 @@ function Router({ isDark, toggleDarkMode }: IRouterProps) {
       <Routes>
         <Route
           path="/"
-          element={<Coins toggleDarkMode={toggleDarkMode} isDark={isDark} />}
+          element={<Coins isDark={isDark} toggleDarkMode={toggleDarkMode} />}
         />
         <Route path="/:coinId" element={<Coin />} />
       </Routes>

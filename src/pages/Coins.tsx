@@ -12,13 +12,25 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Header = styled.div``;
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Title = styled.h1`
   font-size: 3rem;
   text-align: center;
   text-transform: uppercase;
+  margin: 0 10px;
+
   color: ${(props) => props.theme.titleColor};
+`;
+
+const ToggleButton = styled.button`
+  font-size: 2rem;
+  size: 4rem;
+  border: none;
+  background-color: transparent;
 `;
 
 const CoinList = styled.ul`
@@ -86,7 +98,9 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
       <Container>
         <Header>
           <Title>Coin Tracker</Title>
-          <button onClick={toggleDarkMode}>{isDark ? "🌼" : "🌸"}</button>
+          <ToggleButton onClick={toggleDarkMode}>
+            {isDark ? "🌼" : "🌸"}
+          </ToggleButton>
         </Header>
         {loading ? (
           <PropagateLoader
