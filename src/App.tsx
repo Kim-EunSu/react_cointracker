@@ -1,5 +1,7 @@
 import Router from "./Router";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { DarkTheme, LightTheme } from "./theme";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -63,8 +65,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
   font-family: 'Source Sans Pro', sans-serif;
-  background-color:${(props) => props.theme.bgColor};
-  color:${(props) => props.theme.textColor};
+  background-color : ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   padding:3rem;
   }
   a{
@@ -75,10 +77,19 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [isDark, setIsDark] = useState(true);
+
+  const toggleDarkMode = () => {
+    setIsDark((prev) => !prev);
+  };
+
   return (
     <>
-      <GlobalStyle />
-      <Router />
+      <ThemeProvider theme={isDark ? DarkTheme : LightTheme}>
+        <button onClick={toggleDarkMode}></button>
+        <GlobalStyle />
+        <Router />
+      </ThemeProvider>
     </>
   );
 }

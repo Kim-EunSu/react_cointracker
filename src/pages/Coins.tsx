@@ -18,7 +18,7 @@ const Title = styled.h1`
   font-size: 3rem;
   text-align: center;
   text-transform: uppercase;
-  color: #rgb(71 71 71);
+  color: ${(props) => props.theme.titleColor};
 `;
 
 const CoinList = styled.ul`

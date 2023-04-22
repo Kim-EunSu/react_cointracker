@@ -14,7 +14,7 @@ const Title = styled.h1`
   font-size: 3rem;
   text-align: center;
   text-transform: uppercase;
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.titleColor};
 `;
 
 const InfoWrapper = styled.div`
