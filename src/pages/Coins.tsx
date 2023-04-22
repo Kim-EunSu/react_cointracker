@@ -65,7 +65,12 @@ interface CoinInterface {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {
+  isDark: boolean;
+  toggleDarkMode: () => void;
+}
+
+function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -81,6 +86,7 @@ function Coins() {
       <Container>
         <Header>
           <Title>Coin Tracker</Title>
+          <button onClick={toggleDarkMode}>{isDark ? "🌼" : "🌸"}</button>
         </Header>
         {loading ? (
           <PropagateLoader
