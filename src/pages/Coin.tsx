@@ -150,7 +150,8 @@ function Coin() {
   const [info, setInfo] = useState<InfoData>();
   const [price, setPrice] = useState<PriceData>();
 
-  const ChartMatch = useMatch("/:coinId/chart");
+  const ChartMatch = useMatch(`/:coinId/chart`);
+  console.log(ChartMatch);
   const PriceMatch = useMatch("/:coinId/price");
 
   useEffect(() => {
@@ -219,7 +220,6 @@ function Coin() {
                 <Link to={`/${coinId}/price`}>Price</Link>
               </Tab>
             </TapWrapper>
-
             <Outlet />
           </InfoWrapper>
         </>
