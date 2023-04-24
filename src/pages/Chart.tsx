@@ -1,12 +1,48 @@
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ApexChart from "../components/ApexChart";
 
-interface ChildProps {
-  coinId: string;
+interface IStand {
+  time_open: number;
+  time_close: number;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
 }
 
-export default function Chart() {
-  const { coinId } = useOutletContext<ChildProps>();
+function Chart() {
+  const { coinId } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [stand, setStand] = useState<IStand>();
 
-  console.log(coinId);
-  return <div>dd</div>;
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        `https://ohlcv-api.nomadcoders.workers.dev?coinId=${coinId}`
+      );
+      const json = await response.json();
+      setStand(json);
+      setIsLoading(false);
+    })();
+  }, [coinId]);
+
+  console.log(stand);
+
+  return (
+    <div>
+      {isLoading ? (
+        "Loading"
+      ) : (
+        <>
+          {stand.map((item) => {
+            <ApexChart item={item} />;
+          })}
+        </>
+      )}
+    </div>
+  );
 }
+
+export default Chart;

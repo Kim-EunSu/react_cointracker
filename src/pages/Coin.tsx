@@ -175,7 +175,9 @@ function Coin() {
 
   return (
     <>
-      <Title>{state?.name || "SecretMode Loading..."}</Title>
+      <Title>
+        {state?.name ? state.name : loading ? "Loading..." : info?.name}
+      </Title>
       {loading ? (
         <PropagateLoader
           color="#a1a198"
@@ -219,7 +221,7 @@ function Coin() {
                 <Link to={`/${coinId}/price`}>Price</Link>
               </Tab>
             </TapWrapper>
-            <Outlet context={{ coinId }} />
+            <Outlet />
           </InfoWrapper>
         </>
       )}
