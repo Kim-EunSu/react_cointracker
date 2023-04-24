@@ -14,3 +14,4 @@
 - Api를 async/await을 사용하여 비동기처리
 - React-spinner를 이용한 로딩화면 추가
 - ContextApi를 이용한 Dark Mode 구현
+- Outlet/useOutletContext를 통한 props전달
