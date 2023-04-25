@@ -164,6 +164,7 @@ function Coin() {
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}
       `);
       const pricejson = await priceData.json();
+      console.log(pricejson);
 
       setInfo(infojson);
       setPrice(pricejson);
@@ -195,8 +196,8 @@ function Coin() {
                 <BoxDesc>{info?.rank}</BoxDesc>
               </BoxWrap>
               <BoxWrap>
-                <BoxTitle>Symbol</BoxTitle>
-                <BoxDesc>${info?.symbol}</BoxDesc>
+                <BoxTitle>Price</BoxTitle>
+                <BoxDesc>${price?.quotes.USD.price.toFixed(2)}</BoxDesc>
               </BoxWrap>
             </BoxWrapper>
 
