@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ApexChart from "../components/ApexChart";
+import ApexChart from "react-apexcharts";
 
 interface IStand {
   time_open: number;
@@ -15,7 +15,7 @@ interface IStand {
 function Chart() {
   const { coinId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [stand, setStand] = useState<IStand>();
+  const [stand, setStand] = useState<IStand[]>();
 
   useEffect(() => {
     (async () => {
@@ -28,17 +28,49 @@ function Chart() {
     })();
   }, [coinId]);
 
-  console.log(stand);
-
   return (
     <div>
       {isLoading ? (
         "Loading"
       ) : (
         <>
-          {stand.map((item) => {
-            <ApexChart item={item} />;
-          })}
+          {stand?.map((item) => (
+            <div key={item.close}>
+              <ApexChart
+                type="line"
+                series={[
+                  // series는 보내고 싶은 모든 data
+                  {
+                    name: "sales",
+                    data: Number(item?.close) as unknown as number[],
+                  },
+                ]}
+                options={{
+                  chart: {
+                    height: 500,
+                    width: 500,
+                  },
+                  theme: {
+                    mode: "dark",
+                  },
+                  stroke: {
+                    curve: "smooth",
+                    width: 4,
+                  },
+                  fill: {
+                    type: "gradient",
+                    gradient: { gradientToColors: ["yellow"], stops: [0, 100] },
+                  },
+
+                  xaxis: {
+                    type: "datetime",
+                    categories: item?.time_close * 1000,
+                  },
+                  colors: ["skyblue"],
+                }}
+              />
+            </div>
+          ))}
         </>
       )}
     </div>
