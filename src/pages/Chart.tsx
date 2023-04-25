@@ -34,43 +34,45 @@ function Chart() {
         "Loading"
       ) : (
         <>
-          {stand?.map((item) => (
-            <div key={item.close}>
-              <ApexChart
-                type="line"
-                series={[
-                  // series는 보내고 싶은 모든 data
-                  {
-                    name: "sales",
-                    data: Number(item?.close) as unknown as number[],
-                  },
-                ]}
-                options={{
-                  chart: {
-                    height: 500,
-                    width: 500,
-                  },
-                  theme: {
-                    mode: "dark",
-                  },
-                  stroke: {
-                    curve: "smooth",
-                    width: 4,
-                  },
-                  fill: {
-                    type: "gradient",
-                    gradient: { gradientToColors: ["yellow"], stops: [0, 100] },
-                  },
+          <ApexChart
+            type="line"
+            series={[
+              // series는 보내고 싶은 모든 data
+              {
+                name: "sales",
+                data: stand?.map((item) => item.close) as unknown as number[],
+              },
+            ]}
+            options={{
+              chart: {
+                height: 500,
+                width: 500,
+              },
+              theme: {
+                mode: "dark",
+              },
+              stroke: {
+                curve: "smooth",
+                width: 4,
+              },
+              fill: {
+                type: "gradient",
+                gradient: { gradientToColors: ["yellow"], stops: [0, 100] },
+              },
 
-                  xaxis: {
-                    type: "datetime",
-                    categories: item?.time_close * 1000,
-                  },
-                  colors: ["skyblue"],
-                }}
-              />
-            </div>
-          ))}
+              xaxis: {
+                type: "datetime",
+                categories: stand?.map((item) => +item.time_close * 1000),
+              },
+              colors: ["skyblue"],
+              tooltip: {
+                y: {
+                  // formatter는 값을 넘겨주는 함수
+                  formatter: (value) => `${value.toFixed(3)}`,
+                },
+              },
+            }}
+          />
         </>
       )}
     </div>
