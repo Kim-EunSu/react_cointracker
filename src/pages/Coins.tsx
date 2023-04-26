@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useEffect, useState, CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import PropagateLoader from "react-spinners/PropagateLoader";
+import Loader from "../components/Loader";
 
 const Container = styled.div`
   display: flex;
@@ -60,13 +60,6 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-const override: CSSProperties = {
-  position: "fixed",
-  top: "40%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-};
-
 interface CoinInterface {
   id: string;
   name: string;
@@ -93,8 +86,6 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
     setLoading(false);
   }, []);
 
-  console.log(coins);
-
   return (
     <>
       <Container>
@@ -105,13 +96,7 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
           </ToggleButton>
         </Header>
         {loading ? (
-          <PropagateLoader
-            color="#a1a198"
-            size={10}
-            cssOverride={override}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+          <Loader />
         ) : (
           <CoinList>
             {coins.slice(0, 100).map((item) => (

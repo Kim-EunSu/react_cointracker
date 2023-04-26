@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ApexChart from "react-apexcharts";
+import Loader from "../components/Loader";
 
 interface IStand {
   time_open: number;
@@ -31,7 +32,7 @@ function Chart() {
   return (
     <div>
       {isLoading ? (
-        "Loading"
+        <Loader />
       ) : (
         <>
           <ApexChart

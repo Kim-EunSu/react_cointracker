@@ -6,15 +6,8 @@ import {
   useParams,
 } from "react-router-dom";
 import styled from "styled-components";
-import { useState, CSSProperties, useEffect } from "react";
-import PropagateLoader from "react-spinners/PropagateLoader";
-
-const override: CSSProperties = {
-  position: "fixed",
-  top: "40%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-};
+import { useState, useEffect } from "react";
+import Loader from "../components/Loader";
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -63,7 +56,7 @@ const Desc = styled.p`
 
 const TapWrapper = styled.div`
   display: flex;
-  padding: 1.5rem 0;
+  padding: 1.5rem 0 3rem;
   justify-content: space-around;
 `;
 
@@ -180,13 +173,7 @@ function Coin() {
         {state?.name ? state.name : loading ? "Loading..." : info?.name}
       </Title>
       {loading ? (
-        <PropagateLoader
-          color="#a1a198"
-          size={10}
-          cssOverride={override}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+        <Loader />
       ) : (
         <>
           <InfoWrapper>
