@@ -3,6 +3,7 @@ import {
   Outlet,
   useLocation,
   useMatch,
+  useNavigate,
   useParams,
 } from "react-router-dom";
 import styled from "styled-components";
@@ -10,10 +11,19 @@ import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 
 const Title = styled.h1`
+  padding: 1rem;
   font-size: 3rem;
   text-align: center;
   text-transform: uppercase;
   color: ${(props) => props.theme.titleColor};
+`;
+
+const BackBtn = styled.button`
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.5rem;
+  background: transparent;
 `;
 
 const InfoWrapper = styled.div`
@@ -137,6 +147,8 @@ interface PriceData {
 function Coin() {
   const [loading, setLoading] = useState(true);
 
+  const navigate = useNavigate();
+
   const { coinId } = useParams();
   const { state } = useLocation() as RouteState;
 
@@ -177,6 +189,13 @@ function Coin() {
       ) : (
         <>
           <InfoWrapper>
+            <BackBtn
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              &larr;
+            </BackBtn>
             <BoxWrapper>
               <BoxWrap>
                 <BoxTitle>Rank</BoxTitle>
