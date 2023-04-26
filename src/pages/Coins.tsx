@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { Helmet } from "react-helmet-async";
 
 const Container = styled.div`
   display: flex;
@@ -88,6 +89,9 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
 
   return (
     <>
+      <Helmet>
+        <title>CoinTracker</title>
+      </Helmet>
       <Container>
         <Header>
           <Title>Coin Tracker</Title>
