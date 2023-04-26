@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 import Loader from "../components/Loader";
+
+const BoxWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, auto));
+`;
+
+const BoxWrap = styled.div``;
 
 interface PriceData {
   id: string;
@@ -49,9 +57,26 @@ export default function Price() {
       const data = await response.json();
       setStand(data);
       setIsLoading(false);
-      console.log(data);
+      console.log(stand);
     })();
   }, [coinId]);
 
-  return <>{isLoading ? <Loader /> : <></>}</>;
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <BoxWrapper>
+            <BoxWrap>{stand?.quotes.USD.percent_change_30m}</BoxWrap>
+            <BoxWrap>{stand?.quotes.USD.percent_change_1h}</BoxWrap>
+            <BoxWrap>{stand?.quotes.USD.percent_change_6h}</BoxWrap>
+            <BoxWrap>{stand?.quotes.USD.percent_change_12h}</BoxWrap>
+            <BoxWrap>{stand?.quotes.USD.market_cap_change_24h}</BoxWrap>
+            <BoxWrap>{stand?.quotes.USD.percent_change_30d}</BoxWrap>
+          </BoxWrapper>
+        </>
+      )}
+    </>
+  );
 }
