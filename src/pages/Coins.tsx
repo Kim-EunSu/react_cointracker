@@ -61,14 +61,25 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
+// interface CoinInterface {
+//   id: string;
+//   name: string;
+//   symbol: string;
+//   rank: number;
+//   is_new: boolean;
+//   is_active: boolean;
+//   type: string;
+// }
+
 interface CoinInterface {
   id: string;
-  name: string;
   symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
+  name: string;
+  image: {
+    thumb: string;
+    small: string;
+    large: string;
+  };
 }
 
 interface ICoinsProps {
@@ -80,9 +91,16 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("https://api.coinpaprika.com/v1/ticker")
+  //     .then((res) => setCoins(res.data));
+  //   setLoading(false);
+  // }, []);
+
   useEffect(() => {
     axios
-      .get("https://api.coinpaprika.com/v1/coins")
+      .get("https://api.coingecko.com/api/v3/coins/")
       .then((res) => setCoins(res.data));
     setLoading(false);
   }, []);
@@ -103,13 +121,10 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
           <Loader />
         ) : (
           <CoinList>
-            {coins.slice(0, 100).map((item) => (
+            {coins.map((item) => (
               <Coin key={item.id}>
                 <Link to={`/${item.id}`} state={{ name: item.name }}>
-                  <Image
-                    src={`https://static.coinpaprika.com/coin/${item.id}/logo.png`}
-                    alt="coin"
-                  ></Image>
+                  <Image src={item.image.small} alt="coin" />
                   {item.name} &rarr;
                 </Link>
               </Coin>

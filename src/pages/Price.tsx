@@ -5,10 +5,24 @@ import Loader from "../components/Loader";
 
 const BoxWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(200px, auto));
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
 `;
 
-const BoxWrap = styled.div``;
+const BoxWrap = styled.div`
+  padding: 1.2rem;
+  border-radius: 20px;
+  background: white;
+`;
+
+const BoxTitle = styled.h2`
+  color: #b0b0b0;
+`;
+
+const BoxDesc = styled.h3`
+  font-size: 2rem;
+  padding: 0.8rem 0 0;
+`;
 
 interface PriceData {
   id: string;
@@ -59,6 +73,7 @@ export default function Price() {
       setIsLoading(false);
       console.log(stand);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinId]);
 
   return (
@@ -68,12 +83,30 @@ export default function Price() {
       ) : (
         <>
           <BoxWrapper>
-            <BoxWrap>{stand?.quotes.USD.percent_change_30m}</BoxWrap>
-            <BoxWrap>{stand?.quotes.USD.percent_change_1h}</BoxWrap>
-            <BoxWrap>{stand?.quotes.USD.percent_change_6h}</BoxWrap>
-            <BoxWrap>{stand?.quotes.USD.percent_change_12h}</BoxWrap>
-            <BoxWrap>{stand?.quotes.USD.market_cap_change_24h}</BoxWrap>
-            <BoxWrap>{stand?.quotes.USD.percent_change_30d}</BoxWrap>
+            <BoxWrap>
+              <BoxTitle>From 1H ago</BoxTitle>
+              <BoxDesc> {stand?.quotes.USD.percent_change_1h}%</BoxDesc>
+            </BoxWrap>
+            <BoxWrap>
+              <BoxTitle>From 6H ago</BoxTitle>
+              <BoxDesc> {stand?.quotes.USD.percent_change_6h}%</BoxDesc>
+            </BoxWrap>
+            <BoxWrap>
+              <BoxTitle>From 12H ago</BoxTitle>
+              <BoxDesc>{stand?.quotes.USD.percent_change_12h}%</BoxDesc>
+            </BoxWrap>
+            <BoxWrap>
+              <BoxTitle>From 24H ago</BoxTitle>
+              <BoxDesc>{stand?.quotes.USD.percent_change_24h}%</BoxDesc>
+            </BoxWrap>
+            <BoxWrap>
+              <BoxTitle>From 7D ago</BoxTitle>
+              <BoxDesc>{stand?.quotes.USD.percent_change_7d}%</BoxDesc>
+            </BoxWrap>
+            <BoxWrap>
+              <BoxTitle>From 30D ago</BoxTitle>
+              <BoxDesc>{stand?.quotes.USD.percent_change_30d}%</BoxDesc>
+            </BoxWrap>
           </BoxWrapper>
         </>
       )}
