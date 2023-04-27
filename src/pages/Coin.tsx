@@ -165,10 +165,11 @@ function Coin() {
       `);
       const infojson = await infoData.json();
 
-      const priceData =
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}
-      `);
+      const priceData = await fetch(
+        `https://api.coinpaprika.com/v1/tickers/${coinId}`
+      );
       const pricejson = await priceData.json();
+      console.log(pricejson);
 
       setInfo(infojson);
       setPrice(pricejson);
@@ -202,7 +203,7 @@ function Coin() {
               </BoxWrap>
               <BoxWrap>
                 <BoxTitle>Price</BoxTitle>
-                <BoxDesc>${price?.quotes.USD.price.toFixed(2)}</BoxDesc>
+                <BoxDesc>${price?.quotes.USD.price}</BoxDesc>
               </BoxWrap>
             </BoxWrapper>
 
@@ -211,7 +212,7 @@ function Coin() {
             <BoxWrapper>
               <BoxWrap>
                 <BoxTitle>Toal_Suply</BoxTitle>
-                <BoxDesc>{price?.total_supply.toFixed(0)}</BoxDesc>
+                <BoxDesc>{price?.total_supply}</BoxDesc>
               </BoxWrap>
               <BoxWrap>
                 <BoxTitle>Max_Suply</BoxTitle>
