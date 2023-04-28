@@ -169,7 +169,6 @@ function Coin() {
         `https://api.coinpaprika.com/v1/tickers/${coinId}`
       );
       const pricejson = await priceData.json();
-      console.log(pricejson);
 
       setInfo(infojson);
       setPrice(pricejson);

@@ -41,7 +41,7 @@ interface PriceData {
       ath_price: number;
       market_cap: number;
       market_cap_change_24h: number;
-      percent_change_1h: number;
+      percent_change_1h: number | undefined;
       percent_change_1y: number;
       percent_change_6h: number;
       percent_change_7d: number;
@@ -71,9 +71,7 @@ export default function Price() {
       const data = await response.json();
       setStand(data);
       setIsLoading(false);
-      console.log(stand);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinId]);
 
   return (
@@ -85,27 +83,27 @@ export default function Price() {
           <BoxWrapper>
             <BoxWrap>
               <BoxTitle>From 1H ago</BoxTitle>
-              <BoxDesc> {stand?.quotes.USD.percent_change_1h}%</BoxDesc>
+              <BoxDesc>{stand?.quotes.USD.percent_change_1h}</BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 6H ago</BoxTitle>
-              <BoxDesc> {stand?.quotes.USD.percent_change_6h}%</BoxDesc>
+              <BoxDesc>{stand?.quotes.USD.percent_change_6h}</BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 12H ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_12h}%</BoxDesc>
+              <BoxDesc>{stand?.quotes.USD.percent_change_12h}</BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 24H ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_24h}%</BoxDesc>
+              <BoxDesc>{stand?.quotes.USD.percent_change_24h}</BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 7D ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_7d}%</BoxDesc>
+              <BoxDesc>{stand?.quotes.USD.percent_change_7d}</BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 30D ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_30d}%</BoxDesc>
+              <BoxDesc>{stand?.quotes.USD.percent_change_30d}</BoxDesc>
             </BoxWrap>
           </BoxWrapper>
         </>

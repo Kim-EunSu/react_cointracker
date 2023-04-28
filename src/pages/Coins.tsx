@@ -87,8 +87,6 @@ function Coins({ isDark, toggleDarkMode }: ICoinsProps) {
     setLoading(false);
   }, []);
 
-  console.log(coins);
-
   return (
     <>
       <Helmet>
