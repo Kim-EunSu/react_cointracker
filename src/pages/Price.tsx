@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loader from "../components/Loader";
+import { HiArrowTrendingUp } from "react-icons/hi2";
+import { HiArrowTrendingDown } from "react-icons/hi2";
 
 const BoxWrapper = styled.div`
   display: grid;
@@ -83,27 +85,94 @@ export default function Price() {
           <BoxWrapper>
             <BoxWrap>
               <BoxTitle>From 1H ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_1h}</BoxDesc>
+              <BoxDesc>
+                {stand?.quotes.USD.percent_change_1h}
+                {stand?.quotes.USD.percent_change_1h ? (
+                  stand?.quotes.USD.percent_change_1h > 0 ? (
+                    <HiArrowTrendingUp />
+                  ) : (
+                    <HiArrowTrendingDown />
+                  )
+                ) : (
+                  "-"
+                )}
+              </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 6H ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_6h}</BoxDesc>
+              <BoxDesc>
+                {stand?.quotes.USD.percent_change_6h}
+                {stand?.quotes.USD.percent_change_6h ? (
+                  stand?.quotes.USD.percent_change_6h > 0 ? (
+                    <HiArrowTrendingUp />
+                  ) : (
+                    <HiArrowTrendingDown />
+                  )
+                ) : (
+                  "-"
+                )}
+              </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 12H ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_12h}</BoxDesc>
+              <BoxDesc>
+                {" "}
+                {stand?.quotes.USD.percent_change_12h}
+                {stand?.quotes.USD.percent_change_12h ? (
+                  stand?.quotes.USD.percent_change_12h > 0 ? (
+                    <HiArrowTrendingUp />
+                  ) : (
+                    <HiArrowTrendingDown />
+                  )
+                ) : (
+                  "-"
+                )}
+              </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 24H ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_24h}</BoxDesc>
+              <BoxDesc>
+                {stand?.quotes.USD.percent_change_24h}
+                {stand?.quotes.USD.percent_change_24h ? (
+                  stand?.quotes.USD.percent_change_24h > 0 ? (
+                    <HiArrowTrendingUp />
+                  ) : (
+                    <HiArrowTrendingDown />
+                  )
+                ) : (
+                  "-"
+                )}
+              </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 7D ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_7d}</BoxDesc>
+              <BoxDesc>
+                {stand?.quotes.USD.percent_change_7d}
+                {stand?.quotes.USD.percent_change_7d ? (
+                  stand?.quotes.USD.percent_change_7d > 0 ? (
+                    <HiArrowTrendingUp />
+                  ) : (
+                    <HiArrowTrendingDown />
+                  )
+                ) : (
+                  "-"
+                )}
+              </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 30D ago</BoxTitle>
-              <BoxDesc>{stand?.quotes.USD.percent_change_30d}</BoxDesc>
+              <BoxDesc>
+                {stand?.quotes.USD.percent_change_30d}
+                {stand?.quotes.USD.percent_change_30d ? (
+                  stand?.quotes.USD.percent_change_30d > 0 ? (
+                    <HiArrowTrendingUp />
+                  ) : (
+                    <HiArrowTrendingDown />
+                  )
+                ) : (
+                  "-"
+                )}
+              </BoxDesc>
             </BoxWrap>
           </BoxWrapper>
         </>
