@@ -26,14 +26,19 @@ const BoxDesc = styled.h3`
   padding: 0.8rem 0 0;
 `;
 
+const DescWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const ArrowUp = styled(HiArrowTrendingUp)`
   color: #3cb46e;
-  size: 28px;
+  font-size: 2.5rem;
 `;
 
 const ArrowDown = styled(HiArrowTrendingDown)`
   color: #ff6656;
-  size: 28px;
+  font-size: 2.5rem;
 `;
 
 interface PriceData {
@@ -96,92 +101,103 @@ export default function Price() {
             <BoxWrap>
               <BoxTitle>From 1H ago</BoxTitle>
               <BoxDesc>
-                {stand?.quotes.USD.percent_change_1h}
-                {stand?.quotes.USD.percent_change_1h ? (
-                  stand?.quotes.USD.percent_change_1h > 0 ? (
-                    <ArrowUp />
+                <DescWrap>
+                  {stand?.quotes.USD.percent_change_1h}%
+                  {stand?.quotes.USD.percent_change_1h ? (
+                    stand?.quotes.USD.percent_change_1h > 0 ? (
+                      <ArrowUp />
+                    ) : (
+                      <ArrowDown />
+                    )
                   ) : (
-                    <ArrowDown />
-                  )
-                ) : (
-                  "-"
-                )}
+                    "-"
+                  )}
+                </DescWrap>
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 6H ago</BoxTitle>
               <BoxDesc>
-                {stand?.quotes.USD.percent_change_6h}
-                {stand?.quotes.USD.percent_change_6h ? (
-                  stand?.quotes.USD.percent_change_6h > 0 ? (
-                    <ArrowUp />
+                <DescWrap>
+                  {stand?.quotes.USD.percent_change_6h}%
+                  {stand?.quotes.USD.percent_change_6h ? (
+                    stand?.quotes.USD.percent_change_6h > 0 ? (
+                      <ArrowUp />
+                    ) : (
+                      <ArrowDown />
+                    )
                   ) : (
-                    <ArrowDown />
-                  )
-                ) : (
-                  "-"
-                )}
+                    "-"
+                  )}
+                </DescWrap>
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 12H ago</BoxTitle>
               <BoxDesc>
-                {" "}
-                {stand?.quotes.USD.percent_change_12h}
-                {stand?.quotes.USD.percent_change_12h ? (
-                  stand?.quotes.USD.percent_change_12h > 0 ? (
-                    <ArrowUp />
+                <DescWrap>
+                  {stand?.quotes.USD.percent_change_12h}%
+                  {stand?.quotes.USD.percent_change_12h ? (
+                    stand?.quotes.USD.percent_change_12h > 0 ? (
+                      <ArrowUp />
+                    ) : (
+                      <ArrowDown />
+                    )
                   ) : (
-                    <ArrowDown />
-                  )
-                ) : (
-                  "-"
-                )}
+                    "-"
+                  )}
+                </DescWrap>
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 24H ago</BoxTitle>
               <BoxDesc>
-                {stand?.quotes.USD.percent_change_24h}
-                {stand?.quotes.USD.percent_change_24h ? (
-                  stand?.quotes.USD.percent_change_24h > 0 ? (
-                    <ArrowUp />
+                <DescWrap>
+                  {stand?.quotes.USD.percent_change_24h}%
+                  {stand?.quotes.USD.percent_change_24h ? (
+                    stand?.quotes.USD.percent_change_24h > 0 ? (
+                      <ArrowUp />
+                    ) : (
+                      <ArrowDown />
+                    )
                   ) : (
-                    <ArrowDown />
-                  )
-                ) : (
-                  "-"
-                )}
+                    "-"
+                  )}
+                </DescWrap>
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 7D ago</BoxTitle>
               <BoxDesc>
-                {stand?.quotes.USD.percent_change_7d}
-                {stand?.quotes.USD.percent_change_7d ? (
-                  stand?.quotes.USD.percent_change_7d > 0 ? (
-                    <ArrowUp />
+                <DescWrap>
+                  {stand?.quotes.USD.percent_change_7d}%
+                  {stand?.quotes.USD.percent_change_7d ? (
+                    stand?.quotes.USD.percent_change_7d > 0 ? (
+                      <ArrowUp />
+                    ) : (
+                      <ArrowDown />
+                    )
                   ) : (
-                    <ArrowDown />
-                  )
-                ) : (
-                  "-"
-                )}
+                    "-"
+                  )}
+                </DescWrap>
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 30D ago</BoxTitle>
               <BoxDesc>
-                {stand?.quotes.USD.percent_change_30d}
-                {stand?.quotes.USD.percent_change_30d ? (
-                  stand?.quotes.USD.percent_change_30d > 0 ? (
-                    <ArrowUp />
+                <DescWrap>
+                  {stand?.quotes.USD.percent_change_30d}%
+                  {stand?.quotes.USD.percent_change_30d ? (
+                    stand?.quotes.USD.percent_change_30d > 0 ? (
+                      <ArrowUp />
+                    ) : (
+                      <ArrowDown />
+                    )
                   ) : (
-                    <ArrowDown />
-                  )
-                ) : (
-                  "-"
-                )}
+                    "-"
+                  )}
+                </DescWrap>
               </BoxDesc>
             </BoxWrap>
           </BoxWrapper>
