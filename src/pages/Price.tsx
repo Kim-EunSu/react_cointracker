@@ -26,6 +26,16 @@ const BoxDesc = styled.h3`
   padding: 0.8rem 0 0;
 `;
 
+const ArrowUp = styled(HiArrowTrendingUp)`
+  color: #3cb46e;
+  size: 28px;
+`;
+
+const ArrowDown = styled(HiArrowTrendingDown)`
+  color: #ff6656;
+  size: 28px;
+`;
+
 interface PriceData {
   id: string;
   name: string;
@@ -89,9 +99,9 @@ export default function Price() {
                 {stand?.quotes.USD.percent_change_1h}
                 {stand?.quotes.USD.percent_change_1h ? (
                   stand?.quotes.USD.percent_change_1h > 0 ? (
-                    <HiArrowTrendingUp />
+                    <ArrowUp />
                   ) : (
-                    <HiArrowTrendingDown />
+                    <ArrowDown />
                   )
                 ) : (
                   "-"
@@ -104,9 +114,9 @@ export default function Price() {
                 {stand?.quotes.USD.percent_change_6h}
                 {stand?.quotes.USD.percent_change_6h ? (
                   stand?.quotes.USD.percent_change_6h > 0 ? (
-                    <HiArrowTrendingUp />
+                    <ArrowUp />
                   ) : (
-                    <HiArrowTrendingDown />
+                    <ArrowDown />
                   )
                 ) : (
                   "-"
@@ -120,9 +130,9 @@ export default function Price() {
                 {stand?.quotes.USD.percent_change_12h}
                 {stand?.quotes.USD.percent_change_12h ? (
                   stand?.quotes.USD.percent_change_12h > 0 ? (
-                    <HiArrowTrendingUp />
+                    <ArrowUp />
                   ) : (
-                    <HiArrowTrendingDown />
+                    <ArrowDown />
                   )
                 ) : (
                   "-"
@@ -135,9 +145,9 @@ export default function Price() {
                 {stand?.quotes.USD.percent_change_24h}
                 {stand?.quotes.USD.percent_change_24h ? (
                   stand?.quotes.USD.percent_change_24h > 0 ? (
-                    <HiArrowTrendingUp />
+                    <ArrowUp />
                   ) : (
-                    <HiArrowTrendingDown />
+                    <ArrowDown />
                   )
                 ) : (
                   "-"
@@ -150,9 +160,9 @@ export default function Price() {
                 {stand?.quotes.USD.percent_change_7d}
                 {stand?.quotes.USD.percent_change_7d ? (
                   stand?.quotes.USD.percent_change_7d > 0 ? (
-                    <HiArrowTrendingUp />
+                    <ArrowUp />
                   ) : (
-                    <HiArrowTrendingDown />
+                    <ArrowDown />
                   )
                 ) : (
                   "-"
@@ -165,9 +175,9 @@ export default function Price() {
                 {stand?.quotes.USD.percent_change_30d}
                 {stand?.quotes.USD.percent_change_30d ? (
                   stand?.quotes.USD.percent_change_30d > 0 ? (
-                    <HiArrowTrendingUp />
+                    <ArrowUp />
                   ) : (
-                    <HiArrowTrendingDown />
+                    <ArrowDown />
                   )
                 ) : (
                   "-"
