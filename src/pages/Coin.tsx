@@ -202,7 +202,7 @@ function Coin() {
               </BoxWrap>
               <BoxWrap>
                 <BoxTitle>Price</BoxTitle>
-                <BoxDesc>${price?.quotes.USD.price}</BoxDesc>
+                <BoxDesc>${price?.quotes.USD.price.toFixed(2)}</BoxDesc>
               </BoxWrap>
             </BoxWrapper>
 

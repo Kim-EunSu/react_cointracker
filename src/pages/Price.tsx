@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loader from "../components/Loader";
-import { HiArrowTrendingUp } from "react-icons/hi2";
-import { HiArrowTrendingDown } from "react-icons/hi2";
+import { HiArrowTrendingUp, HiArrowTrendingDown } from "react-icons/hi2";
 
 const BoxWrapper = styled.div`
   display: grid;
@@ -26,9 +25,11 @@ const BoxDesc = styled.h3`
   padding: 0.8rem 0 0;
 `;
 
-const DescWrap = styled.div`
+const DescWrap = styled.div<{ change: number | undefined }>`
   display: flex;
   align-items: center;
+  color: ${(props) =>
+    props.change && props.change > 0 ? "#3cb46e" : "#ff6656"};
 `;
 
 const ArrowUp = styled(HiArrowTrendingUp)`
@@ -85,7 +86,7 @@ function PriceChange({ change }: PriceChangeProps) {
   }
 
   return (
-    <DescWrap>
+    <DescWrap change={change}>
       {change}%{change > 0 ? <ArrowUp /> : <ArrowDown />}
     </DescWrap>
   );
