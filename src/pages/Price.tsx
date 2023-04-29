@@ -58,7 +58,7 @@ interface PriceData {
       ath_price: number;
       market_cap: number;
       market_cap_change_24h: number;
-      percent_change_1h: number | undefined;
+      percent_change_1h: number;
       percent_change_1y: number;
       percent_change_6h: number;
       percent_change_7d: number;
@@ -74,6 +74,22 @@ interface PriceData {
     };
   };
 }
+
+interface PriceChangeProps {
+  change: number | undefined;
+}
+
+const PriceChange: React.FC<PriceChangeProps> = ({ change }) => {
+  if (change === undefined) {
+    return <span>-</span>;
+  }
+
+  return (
+    <DescWrap>
+      {change}%{change > 0 ? <ArrowUp /> : <ArrowDown />}
+    </DescWrap>
+  );
+};
 
 export default function Price() {
   const { coinId } = useParams();
@@ -101,103 +117,37 @@ export default function Price() {
             <BoxWrap>
               <BoxTitle>From 1H ago</BoxTitle>
               <BoxDesc>
-                <DescWrap>
-                  {stand?.quotes.USD.percent_change_1h}%
-                  {stand?.quotes.USD.percent_change_1h ? (
-                    stand?.quotes.USD.percent_change_1h > 0 ? (
-                      <ArrowUp />
-                    ) : (
-                      <ArrowDown />
-                    )
-                  ) : (
-                    "-"
-                  )}
-                </DescWrap>
+                <PriceChange change={stand?.quotes.USD.percent_change_1h} />
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 6H ago</BoxTitle>
               <BoxDesc>
-                <DescWrap>
-                  {stand?.quotes.USD.percent_change_6h}%
-                  {stand?.quotes.USD.percent_change_6h ? (
-                    stand?.quotes.USD.percent_change_6h > 0 ? (
-                      <ArrowUp />
-                    ) : (
-                      <ArrowDown />
-                    )
-                  ) : (
-                    "-"
-                  )}
-                </DescWrap>
+                <PriceChange change={stand?.quotes.USD.percent_change_6h} />
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 12H ago</BoxTitle>
               <BoxDesc>
-                <DescWrap>
-                  {stand?.quotes.USD.percent_change_12h}%
-                  {stand?.quotes.USD.percent_change_12h ? (
-                    stand?.quotes.USD.percent_change_12h > 0 ? (
-                      <ArrowUp />
-                    ) : (
-                      <ArrowDown />
-                    )
-                  ) : (
-                    "-"
-                  )}
-                </DescWrap>
+                <PriceChange change={stand?.quotes.USD.percent_change_12h} />
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 24H ago</BoxTitle>
               <BoxDesc>
-                <DescWrap>
-                  {stand?.quotes.USD.percent_change_24h}%
-                  {stand?.quotes.USD.percent_change_24h ? (
-                    stand?.quotes.USD.percent_change_24h > 0 ? (
-                      <ArrowUp />
-                    ) : (
-                      <ArrowDown />
-                    )
-                  ) : (
-                    "-"
-                  )}
-                </DescWrap>
+                <PriceChange change={stand?.quotes.USD.percent_change_24h} />
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 7D ago</BoxTitle>
               <BoxDesc>
-                <DescWrap>
-                  {stand?.quotes.USD.percent_change_7d}%
-                  {stand?.quotes.USD.percent_change_7d ? (
-                    stand?.quotes.USD.percent_change_7d > 0 ? (
-                      <ArrowUp />
-                    ) : (
-                      <ArrowDown />
-                    )
-                  ) : (
-                    "-"
-                  )}
-                </DescWrap>
+                <PriceChange change={stand?.quotes.USD.percent_change_7d} />
               </BoxDesc>
             </BoxWrap>
             <BoxWrap>
               <BoxTitle>From 30D ago</BoxTitle>
               <BoxDesc>
-                <DescWrap>
-                  {stand?.quotes.USD.percent_change_30d}%
-                  {stand?.quotes.USD.percent_change_30d ? (
-                    stand?.quotes.USD.percent_change_30d > 0 ? (
-                      <ArrowUp />
-                    ) : (
-                      <ArrowDown />
-                    )
-                  ) : (
-                    "-"
-                  )}
-                </DescWrap>
+                <PriceChange change={stand?.quotes.USD.percent_change_30d} />
               </BoxDesc>
             </BoxWrap>
           </BoxWrapper>
