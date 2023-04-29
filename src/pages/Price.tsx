@@ -79,9 +79,9 @@ interface PriceChangeProps {
   change: number | undefined;
 }
 
-const PriceChange: React.FC<PriceChangeProps> = ({ change }) => {
+function PriceChange({ change }: PriceChangeProps) {
   if (change === undefined) {
-    return <span>-</span>;
+    return <span></span>;
   }
 
   return (
@@ -89,7 +89,7 @@ const PriceChange: React.FC<PriceChangeProps> = ({ change }) => {
       {change}%{change > 0 ? <ArrowUp /> : <ArrowDown />}
     </DescWrap>
   );
-};
+}
 
 export default function Price() {
   const { coinId } = useParams();
